@@ -3,12 +3,19 @@ import math
 
 
 class Circle:
-
     def __init__(self, radius):
         """Initialize a circle with given radius.
         
         :param radius: radius of the circle, may be zero.
         :raises ValueError: if radius is negative.
+
+        >>> circle = Circle(5)
+        >>> circle.radius
+        5
+        >>> Circle(-1)
+        Traceback (most recent call last):
+            ...
+        ValueError: radius must be non-negative
         """
         if radius < 0:
             raise ValueError("radius must be non-negative")
@@ -19,6 +26,12 @@ class Circle:
         area of this circle and another circle.
         Since area is pi*r**2, the radii of the 3 circles
         should form a Pythagorean triple (r1^2 + r2^2 = r3^2)
+
+        >>> circle1 = Circle(3)
+        >>> circle2 = Circle(4)
+        >>> combined_circle = circle1.add_area(circle2)
+        >>> combined_circle.radius
+        5.0
         """
         r1 = self.get_radius()
         r2 = circle.get_radius()
@@ -30,12 +43,32 @@ class Circle:
         return Circle(r)
 
     def get_area(self) -> float:
+        """Return the area of the circle.
+
+        >>> circle = Circle(3)
+        >>> circle.get_area()
+        28.274333882308138
+        """
         return math.pi*self.radius*self.radius
     
     def get_radius(self) -> float:
+        """Return the radius of the circle.
+
+        >>> circle = Circle(3)
+        >>> circle.get_radius()
+        3
+        """
         return self.radius
 
     def __str__(self) -> str:
+        """Return a string representation of the circle.
+
+        >>> circle = Circle(3)
+        >>> str(circle)
+        'Circle(3)'
+        """
         return f"Circle({self.radius})"
-    
+
     __repr__ = __str__
+
+
